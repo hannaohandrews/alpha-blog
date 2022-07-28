@@ -5,6 +5,10 @@ def show
   @articles = @user.articles
 end
 
+def index
+  @users = User.all
+end
+
 def new
   @user = User.new
 end
@@ -17,7 +21,7 @@ def update
   @user = User.find(params[:id])
   if @user.update(user_params)
     flash[:notice] = "Your info was successfully edited"
-    redirect_to articles_path
+    redirect_to @user
   else
     render 'edit'
   end
